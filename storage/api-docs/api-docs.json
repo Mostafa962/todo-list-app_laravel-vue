@@ -1,0 +1,505 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Todolist App OpenApi Demo Documentation",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "mostafaelgebaly962@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/api": {},
+        "/items": {
+            "get": {
+                "tags": [
+                    "items"
+                ],
+                "summary": "Get list of items",
+                "description": "Returns list of items",
+                "operationId": "getItemsList",
+                "responses": {
+                    "200": {
+                        "description": "Success operation with code 200.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "items"
+                ],
+                "summary": "Store new item",
+                "operationId": "itemsStore",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreItemRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success operation with code 200 | Validation errors with code 101.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/items/{item}": {
+            "get": {
+                "tags": [
+                    "items"
+                ],
+                "summary": "Show an item",
+                "operationId": "itemShow",
+                "parameters": [
+                    {
+                        "name": "item",
+                        "in": "path",
+                        "description": "Item id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success operation with code 200 | Validation errors with code 101. ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "items"
+                ],
+                "summary": "Update an item",
+                "operationId": "ItemUpdate",
+                "parameters": [
+                    {
+                        "name": "item",
+                        "in": "path",
+                        "description": "Item id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateItemRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success operation with code 200 | Validation errors with code 101",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "items"
+                ],
+                "summary": "Delete existing item",
+                "operationId": "itemDelete",
+                "parameters": [
+                    {
+                        "name": "item",
+                        "in": "path",
+                        "description": "Item id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success operation with code 200 | Validation errors with code 101",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/items/{item}/restore": {
+            "post": {
+                "tags": [
+                    "items"
+                ],
+                "summary": "Restore deleted item",
+                "operationId": "itemRestore",
+                "parameters": [
+                    {
+                        "name": "item",
+                        "in": "path",
+                        "description": "Item id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success operation with code 200 | Validation errors with code 101",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/items/{item}/force/delete": {
+            "delete": {
+                "tags": [
+                    "items"
+                ],
+                "summary": "Force delete deleted item",
+                "operationId": "itemForceDelete",
+                "parameters": [
+                    {
+                        "name": "item",
+                        "in": "path",
+                        "description": "Item id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success operation with code 200 | Validation errors with code 101",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Item": {
+                "title": "Item",
+                "description": "Item model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "Name of the new item",
+                        "type": "string",
+                        "example": "A nice item"
+                    },
+                    "is_completed": {
+                        "title": "is completed",
+                        "description": "Check if the item is completed, false for not completed, true for completed",
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "completed_at": {
+                        "title": "Completed at",
+                        "description": "Completed at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "Deleted at",
+                        "description": "Deleted at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Item"
+                }
+            },
+            "StoreItemRequest": {
+                "title": "StoreItemRequest",
+                "description": "Store Item request body data",
+                "required": [
+                    "name"
+                ],
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/BaseRequest"
+                    },
+                    {
+                        "properties": {
+                            "name": {
+                                "title": "Item name",
+                                "description": "Name of the item",
+                                "example": "a nice item"
+                            }
+                        }
+                    }
+                ]
+            },
+            "UpdateItemRequest": {
+                "title": "UpdateItemRequest",
+                "description": "Update Item request body data",
+                "required": [
+                    "name"
+                ],
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/BaseRequest"
+                    },
+                    {
+                        "properties": {
+                            "name": {
+                                "title": "Item name",
+                                "description": "Name of the item",
+                                "example": "a nice item"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ItemCollection": {
+                "title": "ItemCollection",
+                "description": "Item collection",
+                "properties": {
+                    "items": {
+                        "description": "Item Collection",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ItemResource"
+                        }
+                    },
+                    "pagination": {
+                        "properties": {
+                            "total": {
+                                "type": "integer"
+                            },
+                            "count": {
+                                "type": "integer"
+                            },
+                            "per_page": {
+                                "type": "integer"
+                            },
+                            "current_page": {
+                                "type": "integer"
+                            },
+                            "total_page": {
+                                "type": "integer"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "ItemResource": {
+                "title": "ItemResource",
+                "description": "Item resource",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "isCompleted": {
+                        "type": "boolean"
+                    },
+                    "completedAt": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "BaseResponse": {
+                "title": "BaseResponse",
+                "description": "Base Response",
+                "properties": {
+                    "code": {
+                        "description": "Response Code",
+                        "type": "integer"
+                    },
+                    "message": {
+                        "description": "Operaion Message",
+                        "type": "string"
+                    },
+                    "validations": {
+                        "description": "validations rules",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BaseRequest"
+                        }
+                    },
+                    "item": {
+                        "description": "Record id if needed(like deleted record id)",
+                        "type": "integer"
+                    },
+                    "data": {
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "BaseRequest": {
+                "title": "BaseRequest",
+                "description": "Base Request"
+            }
+        }
+    }
+}

@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/item', function (Request $request) {
-    return $request->user();
+Route::group(['as' => 'api.'], function () {
+    Route::apiResource('items', 'ItemController');
+    Route::post('items/{id}/restore', 'ItemController@restore');
+    Route::delete('items/{id}/force/delete', 'ItemController@forceDelete');
 });
