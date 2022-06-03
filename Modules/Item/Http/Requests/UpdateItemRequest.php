@@ -16,16 +16,16 @@ class UpdateItemRequest extends BaseRequest
     /**
      * 
      * @OA\Property(
-     *      property="name",
-     *      title="Item name",
-     *      description="Name of the item",
-     *      example="a nice item"
+     *      property="is_completed",
+     *      title="is completed attr",
+     *      description="Status of the item",
+     *      example="true"
      * ),
      */
     public function rules()
     {
         return [
-            'name'        => 'required|string|max:255',
+            'is_completed'   => 'required|boolean',
         ];
     }
 

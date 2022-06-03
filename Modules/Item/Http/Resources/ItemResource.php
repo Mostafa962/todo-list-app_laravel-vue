@@ -24,8 +24,8 @@ class ItemResource extends JsonResource
         return [
             'id'            => (int)$this->id,
             'name'          => $this->name,
-            'isCompleted'   => $this->is_completed,
-            'completedAt'   => $this->completed_at ? $this->convertDate($this->completed_at) : null,
+            'isCompleted'   => $this->isCompleted($this->is_completed),
+            'completedAt'   => $this->convertDate($this->completed_at),
             'createdAt'     => $this->convertDate($this->created_at),
 
         ];

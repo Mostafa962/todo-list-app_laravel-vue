@@ -353,13 +353,6 @@
                         "type": "string",
                         "format": "datetime",
                         "example": "2020-01-27 17:50:45"
-                    },
-                    "deleted_at": {
-                        "title": "Deleted at",
-                        "description": "Deleted at",
-                        "type": "string",
-                        "format": "datetime",
-                        "example": "2020-01-27 17:50:45"
                     }
                 },
                 "type": "object",
@@ -402,10 +395,10 @@
                     },
                     {
                         "properties": {
-                            "name": {
-                                "title": "Item name",
-                                "description": "Name of the item",
-                                "example": "a nice item"
+                            "is_completed": {
+                                "title": "is completed attr",
+                                "description": "Status of the item",
+                                "example": "true"
                             }
                         }
                     }

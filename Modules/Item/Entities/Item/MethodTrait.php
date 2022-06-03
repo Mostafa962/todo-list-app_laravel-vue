@@ -12,6 +12,18 @@ trait MethodTrait {
      */
     public function convertDate($timestamp)
     {
+        if(!$timestamp)
+            return null;
         return  date('d M Y', strtotime($timestamp)) ." - ". date('h:i a', strtotime($timestamp));
+    }
+
+    /**
+     * Check if the item is completed or not.
+     *
+     * @return boolean
+     */
+    public function isCompleted($isCompleted)
+    {
+        return $isCompleted ? true : false;
     }
 }
