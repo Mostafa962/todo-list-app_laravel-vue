@@ -9,11 +9,11 @@ class DeleteItemTest extends TestCase
 
     /**
      * @test *
-     * When user submits put request to update an item completion endpoint
+     * When user submits put request to delete an item completion endpoint
      *
      * @return void
      */
-    public function users_can_update_item()
+    public function users_can_delete_item()
     {
         $item = $this->model::factory()->create();
         $response = $this->json('delete', '/api/items/'.$item->id);
