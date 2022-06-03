@@ -11,7 +11,7 @@ class ItemFactory extends Factory
      *
      * @var string
      */
-    protected $model = \Modules\Item\Entities\Item::class;
+    protected $model = \Modules\Item\Entities\Item\Item::class;
 
     /**
      * Define the model's default state.
